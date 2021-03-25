@@ -11,7 +11,7 @@ const Tarea = ({ tarea, borrarElementoDelArray, index, modificarElementoDelArray
     setModificar(true)
     modificarElementoDelArray(index, modificar, tarea)
 
-    if (modificar) setModificar(false)
+    modificar && setModificar(false)
 
   }
 
