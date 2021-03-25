@@ -8,15 +8,10 @@ const Tarea = ({ tarea, borrarElementoDelArray, index, modificarElementoDelArray
 
 
   const handleClickModificar = () => {
-
     setModificar(true)
     modificarElementoDelArray(index, modificar, tarea)
 
-    if (modificar && index >= 0) {
-      setModificar(false)
-
-
-    }
+    if (modificar) setModificar(false)
 
   }
 
@@ -27,11 +22,6 @@ const Tarea = ({ tarea, borrarElementoDelArray, index, modificarElementoDelArray
   const handleClickBorrar = () => {
     borrarElementoDelArray(index)
   }
-
-  // const handleClickModificar = () => {
-  //   modificarElementoDelArray(tarea, index)
-
-  // }
 
   return (
     <>

@@ -25,19 +25,17 @@ const App = () => {
       lista[i] = valorDelInput
       setLista([...lista])
       setValorDelInput('')
-    } else {
-      setValorDelInput(tarea)
-    }
+    } else { setValorDelInput(tarea) }
+
 
   }
 
   const handleClick = (index) => {
-    setLista([...lista, valorDelInput]) // a fuego guardarse esto
+    setLista([...lista, valorDelInput])
     setValorDelInput("")
   };
 
   const handleChange = e => {
-    // en la funcion setState se pasa *el nuevo valor de la variabke*
     setValorDelInput(e.target.value);
   };
 
