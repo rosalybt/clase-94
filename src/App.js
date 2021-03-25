@@ -6,6 +6,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 const App = () => {
   const [valorDelInput, setValorDelInput] = useState('');
+
   const [lista, setLista] = useState([
     'Lavar ropa',
     'Corregir TPS',
@@ -16,13 +17,22 @@ const App = () => {
   ])
 
 
-  const borrarElementoDelArray = (param) => {
-    // aqui borramos un elemento del array
-    console.log("estoy en la funcion borrar elemento del array y el parametro que me mandaron es", param)
+  const borrarElementoDelArray = param => setLista([...lista.slice(0, param), ...lista.slice(param + 1)])
+
+  const modificarElementoDelArray = (i, modificar, tarea) => {
+
+    if (modificar) {
+      lista[i] = valorDelInput
+      setLista([...lista])
+      setValorDelInput('')
+    } else {
+      setValorDelInput(tarea)
+    }
+
   }
 
-  const handleClick = () => {
-    setLista([ ...lista, valorDelInput ]) // a fuego guardarse esto
+  const handleClick = (index) => {
+    setLista([...lista, valorDelInput]) // a fuego guardarse esto
     setValorDelInput("")
   };
 
@@ -31,23 +41,20 @@ const App = () => {
     setValorDelInput(e.target.value);
   };
 
-  // En el handle click tenemos en el console.log el valor del input,
-  // la tarea que el usuario quiere agregar
-  // TU MISION, SI DESEAS ACEPTARLA, es lograr que esa tarea se vea en la lista
-  // con todas las demas.
-
-
   return (
     <div>
-    {/* <FontAwesomeIcon icon={faStar} /> */}
+      {/* <FontAwesomeIcon icon={faStar} /> */}
 
       <ul>
         {lista.map((tarea, i) => (
-          <Tarea 
-            key={i} 
-            tarea={tarea} 
+          <Tarea
+            key={i}
+            tarea={tarea}
             borrarElementoDelArray={borrarElementoDelArray}
-            />
+            modificarElementoDelArray={modificarElementoDelArray}
+            index={i}
+
+          />
         ))}
       </ul>
 
@@ -60,7 +67,8 @@ const App = () => {
           placeholder="Por ej, putear a Pepo"
         />
       </label>
-      <button onClick={handleClick}>Agregar tarea</button>
+      <button onClick={handleClick}>Agregar Tarea</button>
+
     </div>
   );
 };
